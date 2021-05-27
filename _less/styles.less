@@ -1,0 +1,89 @@
+@import 'vars/vars.less';
+
+/*!
+@author: Oscar Alderete - oscaralderete@gmail.com
+@website: https://oscaralderete.com/
+@generator: NetBeans 12.0
+*/
+body{
+	font-family: Arial,Helvetica,sans-serif
+}
+
+.photos{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center
+}
+.photos > li{
+	
+}
+.photos > li > img{
+	width: 100%;
+	height: auto
+}
+//responsive
+@media (max-width: @media-unit-sm) {
+	.photos{
+		flex-direction: column
+	}
+}
+
+.video{
+	position: relative;
+	overflow: hidden;
+	width: 100%
+}
+.video::after{
+	display: block;
+	content: '';
+	padding-top: 56.25% //ratio between: width="560" height="315"
+}
+
+.video > iframe{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: none
+}
+
+//toast
+.toast{
+	position: fixed;
+	background-color: transparent;
+	z-index: 100;
+	cursor: wait;
+	text-align: center;
+	box-sizing: border-box;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	visibility: hidden;
+	opacity: 0;
+	transition: all .4s
+}
+.toast.active{
+	visibility: visible;
+	opacity: 1;
+	bottom: 1em;
+	
+}
+.toast > span{
+	display: inline-block;
+	box-shadow: 0 0 .5em #000;
+	text-align: center;
+	background-color: #555;
+	color: #fff;
+	margin: 0 1em;
+	padding: 1em 2em;
+	box-sizing: border-box;
+	border-radius: .4em;
+	cursor: pointer;
+	/*visibility: hidden;
+	opacity: 0;*/
+	
+}

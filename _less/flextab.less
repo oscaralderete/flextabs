@@ -1,0 +1,119 @@
+@import 'vars/vars.less';
+
+/*!
+@author: Oscar Alderete - oscaralderete@gmail.com
+@website: https://oscaralderete.com/
+@generator: NetBeans 12.0
+*/
+
+//all
+ul.flextab, ul.flextab-content{
+	list-style-type: none;
+	margin: 0;
+	padding: 0
+}
+
+//tabbers
+ul.flextab{
+	display: flex;
+	align-items: flex-end;
+	flex-gap: @tabs-gap;
+	gap: @tabs-gap;
+	height: @tabs-inactive-height;
+}
+ul.flextab > li{
+	flex: 1;
+	font-size: 1em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	white-space:nowrap;
+	text-overflow: ellipsis;
+	overflow-x: hidden;
+	background-image: linear-gradient(@tabs-disabled-base-color1,@tabs-disabled-base-color2);
+	background-color: @tabs-disabled-base-color1;
+	color: @tabs-disabled-hover-base-color1;
+	box-sizing: border-box;
+	height: @tabs-inactive-height;
+	border-radius: @tabs-border-radius @tabs-border-radius 0 0;
+	cursor: pointer;
+	transition: all .4s
+}
+ul.flextab > li:hover{
+	background-image: linear-gradient(@tabs-disabled-hover-base-color1,@tabs-disabled-hover-base-color2);
+	background-color: @tabs-disabled-hover-base-color1;
+	color: #fff;
+}
+ul.flextab > li.active{
+	background-image: none;
+	background-color: @tabs-content-bg-color;
+	color: #333;
+	height: @tabs-active-height;
+	font-weight: bold;
+	box-shadow: 0 0 .2em #555;
+	cursor: not-allowed;
+}
+//defaults
+ul.flextab > li > span{
+	display: block
+}
+ul.flextab > li > i{
+	display: none
+}
+
+//content
+ul.flextab-content{
+	position: relative;
+	z-index: 10;
+	background-color: @tabs-content-bg-color;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	margin-bottom: 2em
+}
+ul.flextab-content > li{
+	opacity: 0;
+	visibility: hidden;
+	background-color: @tabs-content-bg-color;
+	height: 0;
+	padding: 0 1em;
+	color: #fff;
+	transition: all .4s;
+	overflow: hidden
+}
+ul.flextab-content > li.active{
+	height: auto;
+	opacity: 1;
+	visibility: visible;
+	background-color: @tabs-content-bg-color;
+	padding: 1em;
+	color: #000;
+}
+
+//switchable content title
+.flextab-content-title{
+	display: none;
+	background-image: linear-gradient(@tabs-disabled-hover-base-color1,@tabs-disabled-hover-base-color2);
+	background-color: @tabs-disabled-hover-base-color1;
+	padding: .5em 0;
+	color: #fff;
+	text-align: center;
+	border-radius: @tabs-border-radius
+}
+
+//responsive
+@media (max-width: @media-unit-sm) {
+	ul.flextab > li > span{
+		display: none
+	}
+	ul.flextab > li > i{
+		display: block
+	}
+	.flextab-content-title{
+		display: block
+	}
+	ul.flextab-content > li.active{
+		padding: 0
+	}
+}

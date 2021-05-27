@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+<title>Flextabs - Tabs using flexbox</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<!-- complementary page styles -->
+<link rel="stylesheet" href="css/styles.css">
+<!-- flextab -->
+<link rel="stylesheet" href="css/flextab.css">
+</head>
+<body>
+
+<div id="pure-js">
+	<div id="vueApp">
+		<h1>Flextab - Responsive tabs system based on flexbox and handled by JS</h1>
+		<p>Vue is my fav JS framework, so you can integrate it with Flextab easily!</p>
+		<p>Tabs let you put a lot of information/processes in one place so Flextab could be a usefool tool in your projects, specially SPAs.</p>
+		<p>(Check <a href="js/scripts.js" target="_blank">scripts.js</a> file to check how to implement Flextab, it's really easy.)</p>
+		<!-- first tab -->
+		<ul id="vueTab" class="flextab">
+			<!-- using v-for directive to dynamically build tabs -->
+			<li v-for="i in tabs">
+				<i :class="'fas fa-' + i.icon"></i>
+				<span>{{i.caption}}</span>
+			</li>
+		</ul>
+		<ul class="flextab-content">
+			<li>
+				<h2 class="flextab-content-title">{{tabs[0].caption}}</h2>
+				<h2>Dynamic content: {{content1}}</h2>
+				<p>(Data dynamically fetched from {{apiUrl}}$userID)</p>
+				<p>This set of tabs is controlled by Vue, contents and interactions!</p>
+			</li>
+			<li>
+				<h2 class="flextab-content-title">{{tabs[1].caption}}</h2>
+				<h2>Content: {{content2}}</h2>
+			</li>
+			<li>
+				<h2 class="flextab-content-title">{{tabs[2].caption}}</h2>
+				<h2>Dynamic content: Next API call will fetch user ID {{userID}} info</h2>
+				<button @click="tab.navTo(0)">Lets see...</button>
+			</li>
+		</ul>
+	</div>
+
+	<p>&nbsp;</p>
+
+	<!-- second tab -->
+	<ul id="secondTab" class="flextab">
+		<li>
+			<i class="fas fa-user"></i>
+			<span>My info</span>
+		</li>
+		<li>
+			<i class="fas fa-image"></i>
+			<span>My pictures</span>
+		</li>
+		<li>
+			<i class="fas fa-question"></i>
+			<span>Other stuff</span>
+		</li>
+	</ul>
+	<ul class="flextab-content">
+		<li>
+			<h2 class="flextab-content-title">My info</h2>
+			<pre>
+var secondTab = new Flextab({
+	id: 'secondTab'
+});
+			</pre>
+			<hr>
+			<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ante lacinia, neque vitae nam laoreet purus venenatis rhoncus etiam congue, eget at nibh semper maecenas scelerisque tristique suspendisse.</p>
+			<p>Suscipit dapibus eget urna arcu venenatis nisl vitae eu, fames ac ornare dictumst facilisi potenti integer ullamcorper habitasse, sit sapien orci suspendisse himenaeos metus torquent facilisis, purus cras tempor molestie litora et magna.</p>
+			<p>Nisl facilisi euismod phasellus leo nullam placerat tempor, velit maecenas lacus nostra nibh orci diam inceptos, vel facilisis magnis dui egestas a.</p>
+			<hr>
+			<p>Programatic navigation:</p>
+			<p>
+				<button onclick="secondTab.navTo(1)">Go to <b>My pictures</b></button>&nbsp;
+				<button onclick="secondTab.navTo(2)">Go to <b>Other stuff</b></button>
+			</p>
+		</li>
+		<li>
+			<h2 class="flextab-content-title">My pictures</h2>
+			<ul class="photos">
+				<li><img src="https://placeimg.com/250/250/animals"></li>
+				<li><img src="https://placeimg.com/250/250/arch"></li>
+				<li><img src="https://placeimg.com/250/250/nature"></li>
+				<li><img src="https://placeimg.com/250/250/people"></li>
+				<li><img src="https://placeimg.com/250/250/tech"></li>
+			</ul>
+		</li>
+		<li>
+			<h2 class="flextab-content-title">Other stuff</h2>
+			<p>Put here whatever you want, for example a video!</p>
+			<p>(If you want controll your embeded video, e.g. pause it when click on other tab, you need to use callbacks. YouTube API lets you do that and other stuff but it's something beyond the scope of Flextabs.)</p>
+			<div class="video">
+				<iframe id="video" src="https://www.youtube.com/embed/wwroUDmB6wI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+		</li>
+	</ul>
+
+	<p>&nbsp;</p>
+
+	<!-- third tab -->
+	<ul id="basic-sample" class="flextab">
+		<li>
+			<i class="fas fa-user"></i>
+			<span>Lorem</span>
+		</li>
+		<li>
+			<i class="fas fa-image"></i>
+			<span>Ipsum</span>
+		</li>
+		<li>
+			<i class="fas fa-question"></i>
+			<span>Dolor</span>
+		</li>
+	</ul>
+	<!-- these contents get reactivity thanks to vue 3 -->
+	<ul id="vue-2" class="flextab-content">
+		<li>
+			<h2 class="flextab-content-title">Lorem</h2>
+			<p>People with french/spanish/american/russian names:</p>
+			<p>(Data dynamically fetched from {{apiUrl}}<b>{{current_lang}})</b></p>
+			<p>Click on another tab, then back to this one, names will change! <b>It's plain JS interacting with Vue to get reactivity!</b></p>
+			<ol>
+				<li v-for="i in people">{{i.firstname}} {{i.lastname}} [{{i.email}}]</li>
+			</ol>
+			<br>
+			<div>
+				<button onclick="switchTo('fr_FR')">Switch now to french names</button>
+				<button onclick="switchTo('es_ES')">Switch now to spanish names</button>
+				<button onclick="switchTo('us_US')">Switch now to american names</button>
+				<button onclick="switchTo('ru_RU')">Switch now to russian names</button>
+			</div>
+		</li>
+		<li>
+			<h2 class="flextab-content-title">Ipsum</h2>
+			<p>Suscipit dapibus eget urna arcu venenatis nisl vitae eu, fames ac ornare dictumst facilisi potenti integer ullamcorper habitasse, sit sapien orci suspendisse himenaeos metus torquent facilisis, purus cras tempor molestie litora et magna.</p>
+		</li>
+		<li>
+			<h2 class="flextab-content-title">Dolor</h2>
+			<pre>
+const thirdTab = new Flextab({
+	id: 'basic-sample',
+	active_index: 2,
+	callback: function(index){
+		if(index===0){
+			console.log('first tab was clicked...');
+			vue2.populatePeople();
+		}
+	}
+});
+			</pre>
+			<hr>
+			<p>As you can see above, these tabs were set to start showing <b>third tab</b> content because third tab index is <b>2</b>. Programmatic navigation is available every where on markup.</p>
+			<p>You can pass callback functions too, in this example we're fetching remote data every time we press on "Lorem" tab.</p>
+			<div>
+				<button onclick="thirdTab.navTo(0)">Go to <b>Lorem</b></button>
+				<button onclick="thirdTab.navTo(1)">Go to <b>Ipsum</b></button>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<div id="toast" class="toast" onclick="toast.make()"></div>
+
+<script src="js/vue.2.6.12.js"></script>
+<script src="js/flextab.js"></script>
+<script src="js/scripts.js"></script>
+</body>
+</html>
